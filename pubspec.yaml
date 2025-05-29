@@ -1,0 +1,19 @@
+name: getx_go
+description: A Flutter project using GetX and Go Router for state management and routing.
+version: 1.0.0
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  go_router: ^15.1.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
