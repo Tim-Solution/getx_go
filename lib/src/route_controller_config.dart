@@ -8,13 +8,12 @@ import 'package:getx_go/src/controller_binding_entry.dart';
 
 typedef GetxGoBuilder = ControllerBindingEntry Function(BuildContext context, GoRouterState state);
 typedef Redirect = FutureOr<String?> Function(BuildContext context, GoRouterState state);
-typedef CustomTransitionBuilder =
-    Widget Function(
-      BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      Widget child,
-    );
+typedef CustomTransitionBuilder = Widget Function(
+  BuildContext context,
+  Animation<double> animation,
+  Animation<double> secondaryAnimation,
+  Widget child,
+);
 
 abstract class RouteControllerConfig {
   /// Must return a `ControllerBinding` which will be used by the route
@@ -40,6 +39,12 @@ abstract class RouteControllerConfig {
 
   /// Optional transitions
   CustomTransitionBuilder? transitionsBuilder() => null;
+
+  /// Transition duration for the route
+  Duration? transitionDuration() => null;
+
+  /// Reverse transition duration for the route
+  Duration? reverseTransitionDuration() => null;
 
   /// Call this method inside redirect method to prevent navigation
   ///
@@ -67,8 +72,7 @@ class PreventRouteException implements Exception {
   String message;
 
   PreventRouteException(this.state, this.message) {
-    message =
-        'PreventNavigation:\n'
+    message = 'PreventNavigation:\n'
         'Message: ${message.isEmpty ? 'No message' : message}\n'
         'Path: ${state.uri.path}\n'
         'Query: ${state.uri.query.isEmpty ? 'No query' : state.uri.query}\n';

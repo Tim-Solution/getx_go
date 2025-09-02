@@ -15,16 +15,19 @@ class ControllerRoute extends GoRoute {
     super.parentNavigatorKey,
     super.caseSensitive,
   }) : super(
-         builder: routeControllerConfig.getBuilder(),
-         pageBuilder: routeControllerConfig.getPageBuilder(),
-         redirect: routeControllerConfig.redirect(),
-         routes: routes,
-       );
+          builder: routeControllerConfig.getBuilder(),
+          pageBuilder: routeControllerConfig.getPageBuilder(),
+          redirect: routeControllerConfig.redirect(),
+          routes: routes,
+        );
 }
 
 extension _ControllerRouteBuilderExt on RouteControllerConfig {
   bool hasTransition() {
-    return transitionsBuilder() != null;
+    final hasBuilder = transitionsBuilder() != null;
+    final hasDuration = transitionDuration() != null;
+    final hasReverseDuration = reverseTransitionDuration() != null;
+    return hasBuilder || hasDuration || hasReverseDuration;
   }
 
   Widget Function(BuildContext, GoRouterState)? getBuilder() {
@@ -36,10 +39,13 @@ extension _ControllerRouteBuilderExt on RouteControllerConfig {
   }
 
   Page<dynamic> _buildWithTransition(BuildContext context, GoRouterState state) {
+    final defaultDuration = const Duration(milliseconds: 300);
     return CustomTransitionPage(
       key: state.pageKey,
       child: builder()(context, state),
-      transitionsBuilder: transitionsBuilder()!,
+      transitionDuration: transitionDuration() ?? defaultDuration,
+      reverseTransitionDuration: reverseTransitionDuration() ?? defaultDuration,
+      transitionsBuilder: transitionsBuilder() ?? (ctx, a1, a2, child) => child,
     );
   }
 }
