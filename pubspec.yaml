@@ -1,6 +1,6 @@
 name: getx_go
 description: A Flutter project using GetX and Go Router for state management and routing.
-version: 1.0.2
+version: 1.0.3
 homepage: https://github.com/Tim-Solution/getx_go
 repository: https://github.com/Tim-Solution/getx_go
 issue_tracker: https://github.com/Tim-Solution/getx_go/issues
