@@ -27,36 +27,32 @@ class HomeView extends GetView<HomeController> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              _buildOptionButton(
+                label: 'Go to Counter Preview View with count',
                 onPressed: () {
-                  context.push(AppRoutes.counterPreview, extra: controller.count.value);
+                  context.pushNamed(
+                    AppRoutes.counterPreview.name,
+                    extra: controller.count.value,
+                  );
                 },
-                child: const Text(
-                  'Go to Counter Preview View with count',
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
-                ),
               ),
               const SizedBox(height: 15),
-              ElevatedButton(
+              _buildOptionButton(
+                label: 'Go to Counter Preview View without count',
                 onPressed: () {
-                  context.push(AppRoutes.counterPreview);
+                  context.pushNamed(
+                    AppRoutes.counterPreview.name,
+                  );
                 },
-                child: const Text(
-                  'Go to Counter Preview View without count',
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
-                ),
               ),
               const SizedBox(height: 50),
               Text('Go to the fake feedback view:', style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
-              ElevatedButton(
+              _buildOptionButton(
+                label: 'Go to Fake Feedback View',
                 onPressed: () {
-                  context.push(AppRoutes.feedback);
+                  context.pushNamed(AppRoutes.feedback.name);
                 },
-                child: const Text(
-                  'Go to Fake Feedback View',
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
-                ),
               ),
               const SizedBox(height: 50),
               Text(
@@ -64,14 +60,14 @@ class HomeView extends GetView<HomeController> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
+              _buildOptionButton(
+                label: 'Go to Tagged Page View',
                 onPressed: () {
-                  context.push(AppRoutes.taggedPage, extra: UniqueKey().toString());
+                  context.pushNamed(
+                    AppRoutes.taggedPage.name,
+                    extra: UniqueKey().toString(),
+                  );
                 },
-                child: const Text(
-                  'Go to Tagged Page View',
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
-                ),
               ),
               const SizedBox(height: 50),
             ],
@@ -111,6 +107,19 @@ class HomeView extends GetView<HomeController> {
         ),
         Spacer(flex: 2),
       ],
+    );
+  }
+
+  Widget _buildOptionButton({
+    required String label,
+    VoidCallback? onPressed,
+  }) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
+      ),
     );
   }
 }

@@ -1,4 +1,26 @@
 include: package:flutter_lints/flutter.yaml
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+linter:
+  rules:
+    non_constant_identifier_names: false
+    prefer_single_quotes: true
+    unnecessary_statements: true
+    always_declare_return_types: true
+    avoid_escaping_inner_quotes: true
+    avoid_void_async: true
+    eol_at_end_of_file: true
+    no_literal_bool_comparisons: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    prefer_null_aware_method_calls: true
+    unnecessary_parenthesis: true
+    use_super_parameters: true
+    unnecessary_breaks: true
+    no_leading_underscores_for_local_identifiers: false
+    curly_braces_in_flow_control_structures: false
+    library_private_types_in_public_api: false
+    constant_identifier_names: false
+    depend_on_referenced_packages: false
+
+formatter:
+  trailing_commas: preserve

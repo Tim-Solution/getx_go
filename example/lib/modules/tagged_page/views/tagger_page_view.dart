@@ -15,7 +15,13 @@ class TaggerPageView extends GetView<TaggedPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Tagged Page View - $pageTag'), centerTitle: true),
+      appBar: AppBar(
+        title: Text(
+          'Tagged Page View - $pageTag',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+        ),
+        centerTitle: true,
+      ),
       body: Center(child: Text(controller.fakeRxVar.value)),
     );
   }
